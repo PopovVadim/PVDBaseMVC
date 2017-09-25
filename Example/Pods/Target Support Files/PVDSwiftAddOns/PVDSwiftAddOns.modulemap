@@ -1,0 +1,6 @@
+framework module PVDSwiftAddOns {
+  umbrella header "PVDSwiftAddOns-umbrella.h"
+
+  export *
+  module * { export * }
+}
