@@ -1,0 +1,6 @@
+use_frameworks!
+target 'PVDBaseMVC_Tests' do
+  pod 'PVDBaseMVC', :path => '../'
+  
+  
+end
