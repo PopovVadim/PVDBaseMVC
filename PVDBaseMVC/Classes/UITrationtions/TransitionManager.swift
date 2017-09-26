@@ -34,13 +34,13 @@ public enum TransitionTypes: String {
  *
  *
  */
-public class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+open class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
-    var forward = true
-    var interactive = false
+    open var forward = true
+    open var interactive = false
     
-    static var _instance: TransitionManager!
-    static var shared: TransitionManager {
+    private static var _instance: TransitionManager!
+    open static var shared: TransitionManager {
         get {
             if _instance == nil {
                 _instance = TransitionManager()
@@ -49,37 +49,37 @@ public class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewCont
         }
     }
     
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.forward = true
         return self
     }
     
     // what UIViewControllerAnimatedTransitioning object to use for presenting
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?  {
+    open func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?  {
         self.forward = false
         return self
     }
     
     // MARK: UIViewControllerTransitioningDelegate protocol methods
     
-    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    open func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         // if our interactive flag is true, return the transition manager object
         // otherwise return nil
         return self.interactive ? self : nil
     }
     
-    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    open func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return self.interactive ? self : nil
     }
     
     // MARK: UIViewControllerAnimatedTransitioning methods
     
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.4
     }
     
     // perform the animation(s) to show the transition from one screen to another
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         // Delegate to child classes
     }
 }
@@ -88,10 +88,10 @@ public class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewCont
  *
  *
  */
-public class CrossDissolveTransitionManager : TransitionManager {
+open class CrossDissolveTransitionManager : TransitionManager {
     
     // perform the animation(s) to show the transition from one screen to another
-    public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    open override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         // get reference to the container view that we should perform the transition in
         let container = transitionContext.containerView
@@ -148,10 +148,10 @@ public class CrossDissolveTransitionManager : TransitionManager {
  *
  *
  */
-public class SideBySideTransitionManager : TransitionManager {
+open class SideBySideTransitionManager : TransitionManager {
     
     // perform the animation(s) to show the transition from one screen to another
-    public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    open override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         // get reference to the container view that we should perform the transition in
         let container = transitionContext.containerView

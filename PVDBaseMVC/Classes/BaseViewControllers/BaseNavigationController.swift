@@ -12,11 +12,11 @@ import UIKit
  *
  *
  */
-public class BaseNavigationController : UINavigationController {
+open class BaseNavigationController : UINavigationController {
     
     ///
     fileprivate var _interactive: Bool = false
-    var interactive:Bool {
+    open var interactive:Bool {
         get {
             return _interactive
         }
@@ -28,7 +28,7 @@ public class BaseNavigationController : UINavigationController {
     
     ///
     private var _transitionType: TransitionTypes = .defaultType
-    var transitionType: TransitionTypes {
+    open var transitionType: TransitionTypes {
         get {
             return _transitionType
         }
@@ -40,11 +40,11 @@ public class BaseNavigationController : UINavigationController {
     
     /**
      */
-    var transitionManager: TransitionManager?
+    open var transitionManager: TransitionManager?
     
     /**
      */
-    var statusBarHeight: CGFloat {
+    open var statusBarHeight: CGFloat {
         get {
             return UIApplication.shared.statusBarFrame.height
         }
@@ -86,7 +86,7 @@ public class BaseNavigationController : UINavigationController {
     
     /**
      */
-    func adjustFrame() {
+    open func adjustFrame() {
         self.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
 }
@@ -99,13 +99,13 @@ extension BaseNavigationController : UINavigationControllerDelegate {
     
     /**
      */
-    public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return transitionManager
     }
     
     /**
      */
-    public func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    open func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactive ? transitionManager : nil
     }
 }

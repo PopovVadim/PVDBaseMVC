@@ -14,65 +14,65 @@ import PVDSwiftAddOns
  *
  *
  */
-public class BaseCollectionCellView : UICollectionViewCell {
+open class BaseCollectionCellView : UICollectionViewCell {
     
     ///
-    var model: BaseCollectionCellModel!
+    open var model: BaseCollectionCellModel!
     
     ///
-    var bottomSplitter: UIView!
+    open var bottomSplitter: UIView!
     
     ///
-    var hasBottomSplitter: Bool {
+    open var hasBottomSplitter: Bool {
         return true
     }
     
     ///
-    var leftInset: CGFloat {
+    open var leftInset: CGFloat {
         return 20
     }
     
     ///
-    var rightInset: CGFloat {
+    open var rightInset: CGFloat {
         return -20
     }
     
     ///
-    var splitterHeight: CGFloat {
+    open var splitterHeight: CGFloat {
         return 0.5
     }
     
     ///
-    var splitterColor: UIColor {
+    open var splitterColor: UIColor {
         return UIColor.lightGray
     }
     
     ///
-    var isLast: Bool = false {
+    open var isLast: Bool = false {
         didSet {
             updateBottomSplitter()
         }
     }
     
     ///
-    var didSetup: Bool = false
+    open var didSetup: Bool = false
     
     /**
      */
-    func setup() {
+    open func setup() {
         updateUI()
         didSetup = true
     }
     
     /**
      */
-    func updateUI() {
+    open func updateUI() {
         updateBottomSplitter()
     }
     
     /**
      */
-    private func updateBottomSplitter() {
+    open func updateBottomSplitter() {
         if hasBottomSplitter && !isLast {
             if self.bottomSplitter != nil {
                 self.bottomSplitter.removeFromSuperview()
@@ -103,36 +103,36 @@ public class BaseCollectionCellView : UICollectionViewCell {
  *
  *
  */
-public class BaseCollectionReusableView : UICollectionReusableView {
+open class BaseCollectionReusableView : UICollectionReusableView {
     
     ///
-    var model: BaseCollectionReusableModel!
+    open var model: BaseCollectionReusableModel!
     
     ///
-    var didSetup: Bool = false
+    open var didSetup: Bool = false
     
     /**
      */
-    func setup() {
+    open func setup() {
         updateUI()
         didSetup = true
     }
     
     /**
      */
-    func updateUI() {}
+    open func updateUI() {}
 }
 
 /**
  *
  *
  */
-public class BaseCollectionHeaderView : BaseCollectionReusableView {}
+open class BaseCollectionHeaderView : BaseCollectionReusableView {}
 
 /**
  *
  *
  */
-public class BaseCollectionFooterView : BaseCollectionReusableView {}
+open class BaseCollectionFooterView : BaseCollectionReusableView {}
 
 

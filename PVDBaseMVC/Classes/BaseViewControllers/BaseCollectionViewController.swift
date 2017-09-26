@@ -13,23 +13,23 @@ import PVDSwiftAddOns
  *
  *
  */
-public class BaseCollectionViewController: BaseViewController {
+open class BaseCollectionViewController: BaseViewController {
     
     ///
-    var registeredIdentifiers: Set<String> = Set()
+    open var registeredIdentifiers: Set<String> = Set()
     
     ///
-    var registeredHeaderIdentifiers: Set<String> = Set()
+    open var registeredHeaderIdentifiers: Set<String> = Set()
     
     ///
-    var registeredFooterIdentifiers: Set<String> = Set()
+    open var registeredFooterIdentifiers: Set<String> = Set()
     
     ///
-    var collectionView: UICollectionView!
+    open var collectionView: UICollectionView!
     
     ///
     private var _refreshControl: UIRefreshControl!
-    var refreshControl: UIRefreshControl {
+    open var refreshControl: UIRefreshControl {
         get {
             return _refreshControl
         }
@@ -39,28 +39,33 @@ public class BaseCollectionViewController: BaseViewController {
     }
     
     ///
-    var refreshControlColor: UIColor {
+    open var refreshControlColor: UIColor {
         return UIColor.darkGray
     }
     
     ///
-    var sectionModels: [BaseCollectionSectionModel] {
+    open var scrollViewForRefreshControl: UIScrollView {
+        return self.collectionView
+    }
+    
+    ///
+    open var sectionModels: [BaseCollectionSectionModel] {
         return []
     }
     
     ///
-    var collectionViewParent: UIView {
+    open var collectionViewParent: UIView {
         return self.view
     }
     
     ///
-    var collectionViewFrame: CGRect {
+    open var collectionViewFrame: CGRect {
         return self.view.bounds
     }
     
     ///
     private var _minimumFooterHeightForLastSection: CGFloat = 50.0
-    var minimumFooterHeightForLastSection: CGFloat {
+    open var minimumFooterHeightForLastSection: CGFloat {
         get {
             return _minimumFooterHeightForLastSection
         }
@@ -70,7 +75,7 @@ public class BaseCollectionViewController: BaseViewController {
     }
     
     ///
-    var layout: UICollectionViewFlowLayout {
+    open var layout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
@@ -80,7 +85,7 @@ public class BaseCollectionViewController: BaseViewController {
     
     /**
      */
-    override func createViews() {
+    open override func createViews() {
         super.createViews()
         
         // Collection view
@@ -97,7 +102,7 @@ public class BaseCollectionViewController: BaseViewController {
         refreshControl.tintColor = refreshControlColor
         if #available(iOS 10.0, *) {
             self.refreshControl.addTarget(self, action: #selector(refreshControlValueChanged(_:)), for: .valueChanged)
-            self.collectionView.refreshControl = refreshControl
+            self.scrollViewForRefreshControl.refreshControl = refreshControl
         } else {
             // Fallback on earlier versions
         }
@@ -105,11 +110,11 @@ public class BaseCollectionViewController: BaseViewController {
     
     /**
      */
-    func refresh(withLoadingAnimation: Bool = true) {}
+    open func refresh(withLoadingAnimation: Bool = true) {}
     
     /**
      */
-    internal func registerReusableViews() {
+    open func registerReusableViews() {
         for section in self.sectionModels {
             for cellModel in section.cellModels {
                 if registeredIdentifiers.contains(cellModel.cellIdentifier) {
@@ -138,7 +143,7 @@ public class BaseCollectionViewController: BaseViewController {
     
     /**
      */
-    @objc func refreshControlValueChanged(_ refreshControl: UIRefreshControl) {
+    @objc open func refreshControlValueChanged(_ refreshControl: UIRefreshControl) {
         if refreshControl.isRefreshing {
             self.refresh(withLoadingAnimation: false)
         }
@@ -153,20 +158,20 @@ extension BaseCollectionViewController : UICollectionViewDataSource {
     
     /**
      */
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sectionModels.count
     }
     
     /**
      */
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let models = sectionModels
         return models[section].cellModels.count
     }
     
     /**
      */
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let section = indexPath.section
         let row = indexPath.row
         
@@ -182,7 +187,7 @@ extension BaseCollectionViewController : UICollectionViewDataSource {
     
     /**
      */
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var reusableView = BaseCollectionReusableView()
         guard indexPath.section < self.sectionModels.count else {
@@ -219,14 +224,14 @@ extension BaseCollectionViewController : UICollectionViewDelegateFlowLayout {
     
     /**
      */
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let model = sectionModels[indexPath.section].cellModels[indexPath.row]
         return model.size
     }
     
     /**
      */
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         guard let headerModel = sectionModels[section].headerModel else {
             return CGSize.zero
         }
@@ -235,7 +240,7 @@ extension BaseCollectionViewController : UICollectionViewDelegateFlowLayout {
     
     /**
      */
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         
         let isLastSection = section == numberOfSections(in: collectionView) - 1
         guard let footerModel = sectionModels[section].footerModel else {

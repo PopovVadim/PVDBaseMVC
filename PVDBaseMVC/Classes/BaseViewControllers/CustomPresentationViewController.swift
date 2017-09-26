@@ -12,11 +12,11 @@ import UIKit
  *
  *
  */
-public class CustomPresentationViewController : BaseViewController {
+open class CustomPresentationViewController : BaseViewController {
     
     ///
     fileprivate var _interactive: Bool = false
-    var interactive:Bool {
+    open var interactive:Bool {
         get {
             return _interactive
         }
@@ -28,7 +28,7 @@ public class CustomPresentationViewController : BaseViewController {
     
     ///
     private var _transitionType: TransitionTypes = .defaultType
-    var transitionType: TransitionTypes {
+    open var transitionType: TransitionTypes {
         get {
             return _transitionType
         }
@@ -41,7 +41,7 @@ public class CustomPresentationViewController : BaseViewController {
     
     /**
      */
-    var transitionManager: TransitionManager?
+    open var transitionManager: TransitionManager?
     
     /**
      */

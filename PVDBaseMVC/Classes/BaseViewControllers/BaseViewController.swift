@@ -14,18 +14,18 @@ import PVDSwiftAddOns
  *
  *
  */
-public class BaseViewController: UIViewController {
+open class BaseViewController: UIViewController {
     
     // MARK: Models
     
     ///
-    class var identifier: String {
+    open class var identifier: String {
         return ""
     }
     
     ///
     internal var _vcForTransition: UIViewController!
-    public var vcForTransition: UIViewController {
+    open var vcForTransition: UIViewController {
         get {
             if _vcForTransition == nil {
                 _vcForTransition = self
@@ -38,7 +38,7 @@ public class BaseViewController: UIViewController {
     }
     
     ///
-    internal var nc: BaseNavigationController? {
+    open var nc: BaseNavigationController? {
         return self.navigationController as? BaseNavigationController
     }
     
@@ -62,7 +62,7 @@ public class BaseViewController: UIViewController {
     }
     
     ///
-    var statusBarStyle: UIStatusBarStyle {
+    open var statusBarStyle: UIStatusBarStyle {
         get {
             return self.preferredStatusBarStyle
         }
@@ -73,46 +73,46 @@ public class BaseViewController: UIViewController {
     }
     
     ///
-    var isDisplaying: Bool = false
+    open var isDisplaying: Bool = false
     
     ///
-    internal var viewToBlur: UIView {
+    open var viewToBlur: UIView {
         get {
             return self.view
         }
     }
     
     ///
-    internal var blurStyle: UIBlurEffectStyle {
+    open var blurStyle: UIBlurEffectStyle {
         get {
             return .extraLight
         }
     }
     
     ///
-    internal var acColor: UIColor {
+    open var activityIndicatorColor: UIColor {
         return UIColor.darkGray
     }
     
-    internal class var optionsNames: [String] {
+    open class var optionsNames: [String] {
         return []
     }
     
     ///
-    internal var optionsActions: [String: (Any) -> Void] {
+    open var optionsActions: [String: (Any) -> Void] {
         return [:]
     }
     
-    var hoveredViews: [HoverStyle : [UIView]] = [:]
-    internal var blurView: UIVisualEffectView!
-    private var ac: UIActivityIndicatorView!
+    open var hoveredViews: [HoverStyle : [UIView]] = [:]
+    open var blurView: UIVisualEffectView!
+    open var activityIndicator: UIActivityIndicatorView!
     
-    var executingRequest: Int?
-    var cancelledRequests: [Int] = []
+    open var executingRequest: Int?
+    open var cancelledRequests: [Int] = []
     
     /**
      */
-    class func instantiate(makingOptionsWith args: Any...) -> BaseViewController {
+    open class func instantiate(makingOptionsWith args: Any...) -> BaseViewController {
         let vc = BaseViewController()
         vc.initWithOptions(makeOptions(args: args))
         return vc
@@ -120,7 +120,7 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    internal func initWithOptions(_ options: [String: Any]) {
+    open func initWithOptions(_ options: [String: Any]) {
         for (key, value) in options {
             guard let function = optionsActions[key] else {
                 continue
@@ -131,7 +131,7 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    internal class func makeOptions(args: [Any]) -> [String: Any] {
+    open class func makeOptions(args: [Any]) -> [String: Any] {
         var options: [String : Any] = [:]
         for i in 0 ..< args.count {
             options[optionsNames[i]] = args[i]
@@ -142,7 +142,7 @@ public class BaseViewController: UIViewController {
     /**
      * To be overriden
      */
-    @objc func appDidBecomeActive() {}
+    @objc open func appDidBecomeActive() {}
     
     /**
      */
@@ -178,24 +178,24 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    func push(vc: UIViewController, animated: Bool = true) {
+    open func push(vc: UIViewController, animated: Bool = true) {
         self.vcForTransition.navigationController?.pushViewController(vc, animated: animated)
     }
     
     /**
      */
-    func pop(animated: Bool = true) -> UIViewController? {
+    open func pop(animated: Bool = true) -> UIViewController? {
         return self.vcForTransition.navigationController?.popViewController(animated: animated)
     }
     
     /**
      * To be overriden
      */
-    func createViews() {}
+    open func createViews() {}
     
     /**
      */
-    func cancelCurrentRequest() {
+    open func cancelCurrentRequest() {
         guard let id = self.executingRequest else {
             return
         }
@@ -207,7 +207,7 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    func executingRequest(having id: Int) -> Bool {
+    open func executingRequest(having id: Int) -> Bool {
         if self.cancelledRequests.contains(id) {
             self.cancelledRequests.remove(at: self.cancelledRequests.index(of: id)!)
             return false
@@ -246,7 +246,7 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    func hover(touch: UITouch) {
+    open func hover(touch: UITouch) {
         for style in hoveredViews.keys {
             if hoveredViews[style] == nil {
                 continue
@@ -259,7 +259,7 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    func unhover() {
+    open func unhover() {
         for style in hoveredViews.keys {
             if hoveredViews[style] == nil {
                 continue
@@ -272,7 +272,7 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    func apply(animations: @escaping (() -> Void), animated: Bool, completion: ((Bool) -> Void)?) {
+    open func apply(animations: @escaping (() -> Void), animated: Bool, completion: ((Bool) -> Void)?) {
         if animated {
             UIView.animate(withDuration: 0.3, animations: animations, completion: completion)
         }
@@ -288,7 +288,7 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    func applyBlur(duration: Double = 0.3) {
+    open func applyBlur(duration: Double = 0.3) {
         
         if blurView == nil {
             blurView = UIVisualEffectView()
@@ -303,38 +303,38 @@ public class BaseViewController: UIViewController {
     
     /**
      */
-    func removeBlur(duration: Double = 0.3) {
+    open func removeBlur(duration: Double = 0.3) {
         self.blurView.fadeOut()
     }
     
     /**
      */
-    func startLoadingAnimation(withBlur: Bool = true) {
+    open func startLoadingAnimation(withBlur: Bool = true) {
         if withBlur {
             self.applyBlur()
         }
-        if self.ac == nil {
-            self.ac = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-            ac.hidesWhenStopped = true
-            self.view.addSubview(ac)
+        if self.activityIndicator == nil {
+            self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+            activityIndicator.hidesWhenStopped = true
+            self.view.addSubview(activityIndicator)
         }
-        ac.color = self.acColor
-        ac.startAnimating()
-        ac.snp.makeConstraints({ make in
+        activityIndicator.color = self.activityIndicatorColor
+        activityIndicator.startAnimating()
+        activityIndicator.snp.makeConstraints({ make in
             make.center.equalToSuperview()
         })
     }
     
-    func stopLoadingAnimation() {
+    open func stopLoadingAnimation() {
         self.removeBlur()
-        if self.ac != nil {
-            self.ac.stopAnimating()
+        if self.activityIndicator != nil {
+            self.activityIndicator.stopAnimating()
         }
     }
     
     /**
      */
-    @objc func backTap(_ sender: UIButton) {
+    @objc open func backTap(_ sender: UIButton) {
         self.view.endEditing(true)
         pop()
     }

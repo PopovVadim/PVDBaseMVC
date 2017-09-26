@@ -11,18 +11,18 @@ import Foundation
  *
  *
  */
-public class BaseCollectionSectionModel {
+open class BaseCollectionSectionModel {
     
     ///
-    var headerModel: BaseCollectionHeaderModel?
+    open var headerModel: BaseCollectionHeaderModel?
     ///
-    var footerModel: BaseCollectionFooterModel?
+    open var footerModel: BaseCollectionFooterModel?
     ///
-    var cellModels: [BaseCollectionCellModel] = []
+    open var cellModels: [BaseCollectionCellModel] = []
     
     /**
      */
-    init(headerModel: BaseCollectionHeaderModel? = nil, cellModels: [BaseCollectionCellModel] = [], footerModel: BaseCollectionFooterModel? = nil) {
+    public init(headerModel: BaseCollectionHeaderModel? = nil, cellModels: [BaseCollectionCellModel] = [], footerModel: BaseCollectionFooterModel? = nil) {
         self.headerModel = headerModel
         self.footerModel = footerModel
         self.cellModels = cellModels
@@ -33,20 +33,20 @@ public class BaseCollectionSectionModel {
  *
  *
  */
-public class BaseCollectionCellModel {
+open class BaseCollectionCellModel {
     
     ///
-    var cellIdentifier: String {
+    open var cellIdentifier: String {
         return ""
     }
     
     ///
-    var viewClass: AnyClass? {
+    open var viewClass: AnyClass? {
         return BaseCollectionCellView.self
     }
     
     ///
-    var size: CGSize {
+    open var size: CGSize {
         return CGSize.zero
     }
 }
@@ -55,21 +55,21 @@ public class BaseCollectionCellModel {
  *
  *
  */
-public class BaseCollectionReusableModel {
+open class BaseCollectionReusableModel {
     
     ///
-    var identifier: String {
+    open var identifier: String {
         return "base_collection_reusable_view"
     }
     
     ///
-    var viewClass: AnyClass? {
+    open var viewClass: AnyClass? {
         return BaseCollectionReusableView.self
     }
     
     ///
     private var _size: CGSize = CGSize.zero
-    var size: CGSize {
+    open var size: CGSize {
         get {
             return _size
         }
@@ -80,7 +80,7 @@ public class BaseCollectionReusableModel {
     
     /**
      */
-    init(size: CGSize = CGSize.zero) {
+    public init(size: CGSize = CGSize.zero) {
         self._size = size
     }
 }
@@ -89,15 +89,15 @@ public class BaseCollectionReusableModel {
  *
  *
  */
-public class BaseCollectionHeaderModel : BaseCollectionReusableModel {
+open class BaseCollectionHeaderModel : BaseCollectionReusableModel {
     
     ///
-    override var identifier: String {
+    override open var identifier: String {
         return "base_collection_header"
     }
     
     ///
-    override var viewClass: AnyClass? {
+    override open var viewClass: AnyClass? {
         return BaseCollectionHeaderView.self
     }
 }
@@ -106,15 +106,15 @@ public class BaseCollectionHeaderModel : BaseCollectionReusableModel {
  *
  *
  */
-public class BaseCollectionFooterModel : BaseCollectionReusableModel {
+open class BaseCollectionFooterModel : BaseCollectionReusableModel {
     
     ///
-    override var identifier: String {
+    override open var identifier: String {
         return "base_collection_footer"
     }
     
     ///
-    override var viewClass: AnyClass? {
+    override open var viewClass: AnyClass? {
         return BaseCollectionFooterView.self
     }
 }
