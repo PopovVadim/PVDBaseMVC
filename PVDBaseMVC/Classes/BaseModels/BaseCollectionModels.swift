@@ -46,8 +46,20 @@ open class BaseCollectionCellModel {
     }
     
     ///
+    private var _size: CGSize = CGSize.zero
     open var size: CGSize {
-        return CGSize.zero
+        get {
+            return _size
+        }
+        set {
+            _size = newValue
+        }
+    }
+    
+    /**
+     */
+    public init(size: CGSize = CGSize.zero) {
+        self.size = size
     }
 }
 

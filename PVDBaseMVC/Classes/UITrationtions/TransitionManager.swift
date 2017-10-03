@@ -12,42 +12,10 @@ import UIKit
  *
  *
  */
-public enum TransitionTypes: String {
-    
-    case defaultType = "default"
-    case crossDissolve = "cross_dissolve"
-    case sideBySide = "sideBySide"
-    
-    func transitionManager() -> TransitionManager? {
-        switch self {
-        case .crossDissolve:
-            return CrossDissolveTransitionManager()
-        case .sideBySide:
-            return SideBySideTransitionManager()
-        default:
-            return nil
-        }
-    }
-}
-
-/**
- *
- *
- */
 open class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
     open var forward = true
     open var interactive = false
-    
-    private static var _instance: TransitionManager!
-    open static var shared: TransitionManager {
-        get {
-            if _instance == nil {
-                _instance = TransitionManager()
-            }
-            return _instance
-        }
-    }
     
     open func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.forward = true

@@ -13,7 +13,41 @@ import PVDSwiftAddOns
  *
  *
  */
-open class BaseCollectionViewController: BaseViewController {
+public protocol CollectionViewOwner: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    // MARK: Registered reusable views
+    var registeredIdentifiers: Set<String> {get set}
+    var registeredHeaderIdentifiers: Set<String> {get set}
+    var registeredFooterIdentifiers: Set<String> {get set}
+    
+    // MARK: Views
+    var collectionView: UICollectionView! {get set}
+    var refreshControl: UIRefreshControl! {get set}
+    var collectionViewParent: UIView {get}
+    var viewForRefreshControl: UIScrollView {get}
+    
+    // MARK: Collection params
+    var collectionViewFrame: CGRect {get}
+    var minimumFooterHeightForLastSection: CGFloat {get set}
+    var minimumHeaderHeightForFirstSection: CGFloat {get set}
+    var layout: UICollectionViewFlowLayout {get}
+    
+    // MARK: Flags
+    var hasRefreshControl: Bool {get}
+    
+    // MARK: Models
+    var sectionModels: [BaseCollectionSectionModel] {get}
+    
+    // MARK: Functions
+    func registerReusableViews()
+    func refresh(withLoadingAnimation: Bool)
+}
+
+/**
+ *
+ *
+ */
+open class BaseCollectionViewController: BaseViewController, CollectionViewOwner {
     
     ///
     open var registeredIdentifiers: Set<String> = Set()
@@ -28,19 +62,16 @@ open class BaseCollectionViewController: BaseViewController {
     open var collectionView: UICollectionView!
     
     ///
-    private var _refreshControl: UIRefreshControl!
-    open var refreshControl: UIRefreshControl {
-        get {
-            return _refreshControl
-        }
-        set {
-            _refreshControl = newValue
-        }
+    open var refreshControl: UIRefreshControl!
+    
+    ///
+    open var collectionViewParent: UIView {
+        return self.view
     }
     
     ///
-    open var refreshControlColor: UIColor {
-        return UIColor.darkGray
+    open var viewForRefreshControl: UIScrollView {
+        return self.collectionView
     }
     
     ///
@@ -54,17 +85,12 @@ open class BaseCollectionViewController: BaseViewController {
     }
     
     ///
-    open var collectionViewParent: UIView {
-        return self.view
-    }
-    
-    ///
     open var collectionViewFrame: CGRect {
         return self.view.bounds
     }
     
     ///
-    private var _minimumFooterHeightForLastSection: CGFloat = 50.0
+    private var _minimumFooterHeightForLastSection: CGFloat = 0.0
     open var minimumFooterHeightForLastSection: CGFloat {
         get {
             return _minimumFooterHeightForLastSection
@@ -75,12 +101,33 @@ open class BaseCollectionViewController: BaseViewController {
     }
     
     ///
+    private var _minimumHeaderHeightForFirstSection: CGFloat = 0.0
+    open var minimumHeaderHeightForFirstSection: CGFloat {
+        get {
+            return _minimumHeaderHeightForFirstSection
+        }
+        set {
+            _minimumHeaderHeightForFirstSection = newValue
+        }
+    }
+    
+    ///
     open var layout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         return layout
+    }
+    
+    ///
+    open var hasRefreshControl: Bool {
+        return false
+    }
+    
+    ///
+    open var refreshControlColor: UIColor {
+        return UIColor.darkGray
     }
     
     /**
@@ -100,7 +147,7 @@ open class BaseCollectionViewController: BaseViewController {
         
         self.refreshControl = UIRefreshControl()
         refreshControl.tintColor = refreshControlColor
-        if #available(iOS 10.0, *) {
+        if #available(iOS 10.0, *), hasRefreshControl {
             self.refreshControl.addTarget(self, action: #selector(refreshControlValueChanged(_:)), for: .valueChanged)
             self.scrollViewForRefreshControl.refreshControl = refreshControl
         } else {
@@ -232,10 +279,16 @@ extension BaseCollectionViewController : UICollectionViewDelegateFlowLayout {
     /**
      */
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        let isFirstSection = section == 0
         guard let headerModel = sectionModels[section].headerModel else {
-            return CGSize.zero
+            return isFirstSection ? CGSize(width: self.view.width(), height: minimumHeaderHeightForFirstSection) : CGSize.zero
         }
-        return headerModel.size
+        var size = headerModel.size
+        if isFirstSection && size.height < minimumHeaderHeightForFirstSection {
+            size = CGSize(width: size.width, height: minimumHeaderHeightForFirstSection)
+        }
+        return size
     }
     
     /**

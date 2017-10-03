@@ -16,12 +16,7 @@ import PVDSwiftAddOns
  */
 open class BaseViewController: UIViewController {
     
-    // MARK: Models
-    
-    ///
-    open class var identifier: String {
-        return ""
-    }
+    // MARK: - Properties
     
     ///
     internal var _vcForTransition: UIViewController!
@@ -288,8 +283,7 @@ open class BaseViewController: UIViewController {
     
     /**
      */
-    open func applyBlur(duration: Double = 0.3) {
-        
+    open func applyBlur(animated: Bool = true, duration: Double = 0.3) {
         if blurView == nil {
             blurView = UIVisualEffectView()
             viewToBlur.addSubview(blurView)
@@ -298,18 +292,28 @@ open class BaseViewController: UIViewController {
         blurView.alpha = 0
         blurView.frame = viewToBlur.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurView.fadeIn()
+        if animated {
+            blurView.fadeIn()
+        }
+        else {
+            blurView.alpha = 1
+        }
     }
     
     /**
      */
-    open func removeBlur(duration: Double = 0.3) {
-        self.blurView.fadeOut()
+    open func removeBlur(animated: Bool = true, duration: Double = 0.3) {
+        if animated {
+            self.blurView.fadeOut()
+        }
+        else {
+            self.blurView.alpha = 0
+        }
     }
     
     /**
      */
-    open func startLoadingAnimation(withBlur: Bool = true) {
+    open func startLoadingAnimation(animated: Bool = true, withBlur: Bool = true) {
         if withBlur {
             self.applyBlur()
         }
@@ -325,8 +329,10 @@ open class BaseViewController: UIViewController {
         })
     }
     
-    open func stopLoadingAnimation() {
-        self.removeBlur()
+    /**
+     */
+    open func stopLoadingAnimation(animated: Bool = true) {
+        self.removeBlur(animated: animated)
         if self.activityIndicator != nil {
             self.activityIndicator.stopAnimating()
         }
@@ -336,7 +342,7 @@ open class BaseViewController: UIViewController {
      */
     @objc open func backTap(_ sender: UIButton) {
         self.view.endEditing(true)
-        pop()
+        let _ = pop()
     }
     
     

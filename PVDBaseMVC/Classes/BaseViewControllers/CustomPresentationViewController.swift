@@ -12,7 +12,16 @@ import UIKit
  *
  *
  */
-open class CustomPresentationViewController : BaseViewController {
+public protocol CustomPresentable {
+    var interactive: Bool {get set}
+    var transitionManager: TransitionManager? {get set}
+}
+
+/**
+ *
+ *
+ */
+open class CustomPresentationViewController : BaseViewController, CustomPresentable {
     
     ///
     fileprivate var _interactive: Bool = false
@@ -27,27 +36,22 @@ open class CustomPresentationViewController : BaseViewController {
     }
     
     ///
-    private var _transitionType: TransitionTypes = .defaultType
-    open var transitionType: TransitionTypes {
+    private var _transitionManager: TransitionManager?
+    open var transitionManager: TransitionManager? {
         get {
-            return _transitionType
+            return _transitionManager
         }
         set {
-            _transitionType = newValue
-            transitionManager = newValue.transitionManager()
-            self.transitioningDelegate = transitionManager
+            _transitionManager = newValue
+            self.transitioningDelegate = newValue
         }
     }
     
     /**
      */
-    open var transitionManager: TransitionManager?
-    
-    /**
-     */
     open override func viewDidLoad() {
         super.viewDidLoad()
-        transitionManager = transitionType.transitionManager()
+        transitionManager = nil
         self.transitioningDelegate = transitionManager
         self.modalPresentationStyle = .custom
     }
