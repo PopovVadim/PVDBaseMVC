@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PVDBaseMVC'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'A set of base Models, ViewControllers, Views and other UI to use or inherit from'
 
 # This description is used to generate tags and improve search results.
@@ -39,6 +39,6 @@ A set of base Models, ViewControllers, Views and other UI to use or inherit from
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-    s.dependency 'PVDSwiftAddOns', '~> 0.1.2'
+    s.dependency 'PVDSwiftAddOns', '~> 0.1.4'
     s.dependency 'SnapKit', '~> 4.0.0'
 end

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PVDSwiftAddOns
 
 /**
  *
@@ -37,7 +38,7 @@ open class BaseCollectionCellModel {
     
     ///
     open var cellIdentifier: String {
-        return ""
+        return "base_collection_cell"
     }
     
     ///
@@ -60,6 +61,42 @@ open class BaseCollectionCellModel {
      */
     public init(size: CGSize = CGSize.zero) {
         self.size = size
+    }
+}
+
+/**
+ */
+open class BaseCollectionTextCellModel: BaseCollectionCellModel {
+    
+    ///
+    override open var cellIdentifier: String {
+        return "base_collection_text_cell"
+    }
+    
+    ///
+    override open var viewClass: AnyClass? {
+        return BaseCollectionTextCellView.self
+    }
+    
+    open var text: String?
+    open var textDescriptor: TextDescriptor
+    open var insets: UIEdgeInsets
+    
+    /**
+     */
+    public init(text: String?, textDescriptor: TextDescriptor, size: CGSize, insets: UIEdgeInsets = .zero, shouldWrap: Bool = true) {
+        self.text = text
+        self.textDescriptor = textDescriptor
+        self.insets = insets
+        if shouldWrap && text != nil {
+            var size = size
+            size.height = text!.height(withConstrainedWidth: size.width, font: textDescriptor.font)
+            size.height += insets.top + insets.bottom
+            super.init(size: size)
+        }
+        else {
+            super.init(size: size)
+        }
     }
 }
 

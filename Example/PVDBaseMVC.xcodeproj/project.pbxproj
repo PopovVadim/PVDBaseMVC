@@ -6,16 +6,35 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		94432F5E1F9F02EB0099249A /* PVDBaseMVC_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94432F5D1F9F02EB0099249A /* PVDBaseMVC_Tests.swift */; };
+		D42F210D4B0FFEB694B11222 /* Pods_PVDBaseMVC_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA57D94E3E086A6392B4F372 /* Pods_PVDBaseMVC_Tests.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		28FE305DC13C5FD487B7D996 /* Pods-PVDBaseMVC_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PVDBaseMVC_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PVDBaseMVC_Tests/Pods-PVDBaseMVC_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		78488127E4AC09F6A0CEB5DD /* PVDBaseMVC.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PVDBaseMVC.podspec; path = ../PVDBaseMVC.podspec; sourceTree = "<group>"; };
 		8F37965D615F7DE62EED2901 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		94432F5B1F9F02EB0099249A /* PVDBaseMVC_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PVDBaseMVC_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94432F5D1F9F02EB0099249A /* PVDBaseMVC_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PVDBaseMVC_Tests.swift; sourceTree = "<group>"; };
+		94432F5F1F9F02EB0099249A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5598E09E6053296029FFBA9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FA57D94E3E086A6392B4F372 /* Pods_PVDBaseMVC_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PVDBaseMVC_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDC1938B5D11F5D8C0CF9DE9 /* Pods-PVDBaseMVC_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PVDBaseMVC_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PVDBaseMVC_Tests/Pods-PVDBaseMVC_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94432F581F9F02EB0099249A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D42F210D4B0FFEB694B11222 /* Pods_PVDBaseMVC_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0B8F33A38083DD59E967F107 /* Frameworks */ = {
@@ -40,6 +59,7 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACE81AFB9204008FA782 /* Tests */,
+				94432F5C1F9F02EB0099249A /* PVDBaseMVC_Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				544606C6FA7A8FA2DEBF000E /* Pods */,
 				0B8F33A38083DD59E967F107 /* Frameworks */,
@@ -49,6 +69,7 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				94432F5B1F9F02EB0099249A /* PVDBaseMVC_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,15 +101,54 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		94432F5C1F9F02EB0099249A /* PVDBaseMVC_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				94432F5D1F9F02EB0099249A /* PVDBaseMVC_Tests.swift */,
+				94432F5F1F9F02EB0099249A /* Info.plist */,
+			);
+			path = PVDBaseMVC_Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		94432F5A1F9F02EB0099249A /* PVDBaseMVC_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94432F621F9F02EB0099249A /* Build configuration list for PBXNativeTarget "PVDBaseMVC_Tests" */;
+			buildPhases = (
+				9A23F01633381FC6E2F75F7C /* [CP] Check Pods Manifest.lock */,
+				94432F571F9F02EB0099249A /* Sources */,
+				94432F581F9F02EB0099249A /* Frameworks */,
+				94432F591F9F02EB0099249A /* Resources */,
+				038379EB730CA9B3B6A65435 /* [CP] Embed Pods Frameworks */,
+				D6C7FA7968B16EC3A7D8A8AE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PVDBaseMVC_Tests;
+			productName = PVDBaseMVC_Tests;
+			productReference = 94432F5B1F9F02EB0099249A /* PVDBaseMVC_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
+				TargetAttributes = {
+					94432F5A1F9F02EB0099249A = {
+						CreatedOnToolsVersion = 9.0.1;
+						DevelopmentTeam = 3S4KYJG3GD;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "PVDBaseMVC" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -103,9 +163,89 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				94432F5A1F9F02EB0099249A /* PVDBaseMVC_Tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94432F591F9F02EB0099249A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		038379EB730CA9B3B6A65435 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PVDBaseMVC_Tests/Pods-PVDBaseMVC_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PVDBaseMVC/PVDBaseMVC.framework",
+				"${BUILT_PRODUCTS_DIR}/PVDSwiftAddOns/PVDSwiftAddOns.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PVDBaseMVC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PVDSwiftAddOns.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PVDBaseMVC_Tests/Pods-PVDBaseMVC_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A23F01633381FC6E2F75F7C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PVDBaseMVC_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6C7FA7968B16EC3A7D8A8AE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PVDBaseMVC_Tests/Pods-PVDBaseMVC_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94432F571F9F02EB0099249A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94432F5E1F9F02EB0099249A /* PVDBaseMVC_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		607FACED1AFB9204008FA782 /* Debug */ = {
@@ -197,6 +337,66 @@
 			};
 			name = Release;
 		};
+		94432F601F9F02EB0099249A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28FE305DC13C5FD487B7D996 /* Pods-PVDBaseMVC_Tests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3S4KYJG3GD;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PVDBaseMVC_Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.popov.PVDBaseMVC-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		94432F611F9F02EB0099249A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDC1938B5D11F5D8C0CF9DE9 /* Pods-PVDBaseMVC_Tests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3S4KYJG3GD;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PVDBaseMVC_Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.popov.PVDBaseMVC-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -205,6 +405,15 @@
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
 				607FACEE1AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94432F621F9F02EB0099249A /* Build configuration list for PBXNativeTarget "PVDBaseMVC_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94432F601F9F02EB0099249A /* Debug */,
+				94432F611F9F02EB0099249A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

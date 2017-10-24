@@ -97,6 +97,61 @@ open class BaseCollectionCellView : UICollectionViewCell {
     }
 }
 
+/**
+ *
+ *
+ */
+open class BaseCollectionTextCellView: BaseCollectionCellView {
+    
+    ///
+    internal var localModel: BaseCollectionTextCellModel {
+        return model as! BaseCollectionTextCellModel
+    }
+    
+    ///
+    override open var hasBottomSplitter: Bool {
+        return false
+    }
+    
+    ///
+    open var label: UILabel!
+    
+    /**
+     */
+    override open func setup() {
+        guard !didSetup else {
+            updateUI()
+            return
+        }
+        
+        label = UILabel()
+        label.apply(localModel.textDescriptor)
+        self.addSubview(label)
+        label.snp.makeConstraints({ make in
+            make.left.equalToSuperview().inset(localModel.insets.left)
+            make.right.equalToSuperview().inset(localModel.insets.right)
+            make.top.equalToSuperview().inset(localModel.insets.top)
+            make.bottom.equalToSuperview().inset(localModel.insets.bottom)
+        })
+        
+        super.setup()
+    }
+    
+    /**
+     */
+    override open func updateUI() {
+        super.updateUI()
+        label.text = localModel.text
+        label.apply(localModel.textDescriptor)
+        label.snp.updateConstraints({ make in
+            make.left.equalToSuperview().inset(localModel.insets.left)
+            make.right.equalToSuperview().inset(localModel.insets.right)
+            make.top.equalToSuperview().inset(localModel.insets.top)
+            make.bottom.equalToSuperview().inset(localModel.insets.bottom)
+        })
+    }
+}
+
 // MARK: - Collection reusable views
 
 /**

@@ -303,6 +303,9 @@ open class BaseViewController: UIViewController {
     /**
      */
     open func removeBlur(animated: Bool = true, duration: Double = 0.3) {
+        guard blurView != nil else {
+            return
+        }
         if animated {
             self.blurView.fadeOut()
         }
