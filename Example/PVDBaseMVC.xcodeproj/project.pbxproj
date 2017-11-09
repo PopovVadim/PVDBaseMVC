@@ -188,12 +188,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-PVDBaseMVC_Tests/Pods-PVDBaseMVC_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PVDBaseMVC/PVDBaseMVC.framework",
 				"${BUILT_PRODUCTS_DIR}/PVDSwiftAddOns/PVDSwiftAddOns.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PVDBaseMVC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PVDSwiftAddOns.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

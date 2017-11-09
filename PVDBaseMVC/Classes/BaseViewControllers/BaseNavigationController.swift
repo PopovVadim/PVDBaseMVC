@@ -37,6 +37,8 @@ open class BaseNavigationController : UINavigationController, CustomPresentable 
         self.delegate = self
         transitionManager = nil
         self.transitioningDelegate = transitionManager
+        self.interactivePopGestureRecognizer?.isEnabled = true
+        self.setNavigationBarHidden(true, animated: false)
     }
     
     /**

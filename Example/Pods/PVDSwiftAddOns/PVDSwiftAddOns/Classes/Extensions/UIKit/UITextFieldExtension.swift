@@ -25,4 +25,12 @@ public extension UITextField {
             }, completion: nil)
         })
     }
+    
+    /**
+     */
+    func apply(_ textDescriptor: TextDescriptor) {
+        self.textColor = textDescriptor.color
+        self.textAlignment = textDescriptor.alignment
+        self.font = textDescriptor.font
+    }
 }

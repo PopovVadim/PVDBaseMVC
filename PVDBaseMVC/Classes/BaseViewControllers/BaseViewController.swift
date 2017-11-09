@@ -114,6 +114,13 @@ open class BaseViewController: UIViewController {
     }
     
     /**
+     * TODO: FU
+     */
+    open func addSubview(_ view: UIView) {
+        self.view.addSubview(view)
+    }
+    
+    /**
      */
     open func initWithOptions(_ options: [String: Any]) {
         for (key, value) in options {
@@ -348,5 +355,26 @@ open class BaseViewController: UIViewController {
         let _ = pop()
     }
     
+    /**
+     */
+    open func add(childVC viewController: UIViewController, to view: UIView) {
+        addChildViewController(viewController)
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(viewController.view)
+        viewController.didMove(toParentViewController: self)
+        
+        viewController.view.snp.makeConstraints({ make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+            make.center.equalToSuperview()
+        })
+    }
     
+    /**
+     */
+    open func remove(childVC viewController: UIViewController) {
+        viewController.willMove(toParentViewController: nil)
+        viewController.view.removeFromSuperview()
+        viewController.removeFromParentViewController()
+    }
 }

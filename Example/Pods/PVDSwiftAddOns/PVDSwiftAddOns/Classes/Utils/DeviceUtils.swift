@@ -19,7 +19,7 @@ public class Device {
     }
     
     ///
-    static var current: DeviceModel {
+    open static var current: DeviceModel {
         get {
             let w = UIScreen.main.bounds.width
             if w <= 320 {

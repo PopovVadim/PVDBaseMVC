@@ -19,3 +19,4 @@ public extension CGFloat {
     ///
     var radiansToDegrees: CGFloat { return CGFloat(Double(self).radiansToDegrees) }
 }
+
