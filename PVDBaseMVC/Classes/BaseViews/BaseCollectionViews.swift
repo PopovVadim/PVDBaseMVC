@@ -25,7 +25,13 @@ open class BaseCollectionCellView : UICollectionViewCell {
     
     ///
     open var hasBottomSplitter: Bool {
-        return true
+        guard
+            let pvdDict = Bundle.main.object(forInfoDictionaryKey: "PVD") as? [String: Any],
+            let value = pvdDict["cellsShouldHaveBottomLine"] as? Bool
+        else {
+            return false
+        }
+        return value
     }
     
     ///
