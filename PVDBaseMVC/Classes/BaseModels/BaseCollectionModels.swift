@@ -92,7 +92,6 @@ open class BaseCollectionTextCellModel: BaseCollectionCellModel {
         self.backgroundColor = backgroundColor
         if shouldWrap && text != nil {
             var size = size
-            // TODO: FU
             size.height = text!.height(withConstrainedWidth: size.width - insets.left - insets.right, font: textDescriptor.font)
             size.height += insets.top + insets.bottom
             super.init(size: size)

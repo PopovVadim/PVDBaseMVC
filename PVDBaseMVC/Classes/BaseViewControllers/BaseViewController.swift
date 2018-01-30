@@ -114,7 +114,7 @@ open class BaseViewController: UIViewController {
     }
     
     /**
-     * TODO: FU
+     *
      */
     open func addSubview(_ view: UIView) {
         self.view.addSubview(view)
@@ -296,7 +296,7 @@ open class BaseViewController: UIViewController {
             viewToBlur.addSubview(blurView)
         }
         blurView.effect = UIBlurEffect(style: blurStyle)
-        blurView.alpha = 0
+//        blurView.alpha = 0
         blurView.frame = viewToBlur.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         if animated {
@@ -325,7 +325,7 @@ open class BaseViewController: UIViewController {
      */
     open func startLoadingAnimation(animated: Bool = true, withBlur: Bool = true) {
         if withBlur {
-            self.applyBlur()
+            self.applyBlur(animated: animated)
         }
         if self.activityIndicator == nil {
             self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)

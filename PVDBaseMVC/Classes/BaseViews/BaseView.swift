@@ -31,5 +31,5 @@ open class BaseView: UIView {
     
     /**
      */
-    internal func createViews() {}
+    open func createViews() {}
 }

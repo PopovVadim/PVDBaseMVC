@@ -45,7 +45,7 @@ public enum DeviceModel {
     
     /**
      */
-    func fontScale() -> CGFloat {
+    public func fontScale() -> CGFloat {
         switch self {
         case .iPhone5:
             return 0.8
