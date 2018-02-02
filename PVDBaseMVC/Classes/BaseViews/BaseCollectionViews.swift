@@ -389,10 +389,9 @@ open class BaseCellWithCollectionView: BaseCollectionCellView, CollectionViewOwn
 }
 
 /**
- *
- *
+ * `UICollectionViewDataSource` conformance
  */
-extension BaseCellWithCollectionView : UICollectionViewDataSource {
+extension BaseCellWithCollectionView {
     
     /**
      */
@@ -455,10 +454,9 @@ extension BaseCellWithCollectionView : UICollectionViewDataSource {
 }
 
 /**
- *
- *
+ * `UICollectionViewDelegateFlowLayout` conformance
  */
-extension BaseCellWithCollectionView : UICollectionViewDelegateFlowLayout {
+extension BaseCellWithCollectionView {
     
     /**
      */

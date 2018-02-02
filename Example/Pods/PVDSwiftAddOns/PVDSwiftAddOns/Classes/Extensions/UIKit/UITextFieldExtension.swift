@@ -15,7 +15,7 @@ public extension UITextField {
     
     /**
      */
-    func pulse (withColor color: UIColor, duration: Double = 0.5) {
+    public func pulse (withColor color: UIColor, duration: Double = 0.5) {
         let initialColor: UIColor = self.textColor!
         UIView.animate(withDuration: duration/2, delay: 0, options: .curveEaseOut, animations: {
             self.textColor = color
@@ -28,7 +28,7 @@ public extension UITextField {
     
     /**
      */
-    func apply(_ textDescriptor: TextDescriptor) {
+    public func apply(_ textDescriptor: TextDescriptor) {
         self.textColor = textDescriptor.color
         self.textAlignment = textDescriptor.alignment
         self.font = textDescriptor.font

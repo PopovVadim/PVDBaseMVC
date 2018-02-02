@@ -8,25 +8,53 @@
 import Foundation
 
 /**
+ */
+public func == (lhs: HoverStyle, rhs: HoverStyle) -> Bool {
+    return lhs.toInt() == rhs.toInt()
+}
+
+/**
  *
  *
  */
-public enum HoverStyle: Int {
+public enum HoverStyle: Hashable {
     
-    case push = 0
+    ////
+    public var hashValue: Int {
+        return self.toInt()
+    }
+    
+    case push
     case shiftRight
+    case transform(() -> Void)
     
     /**
      */
-    func applyHover(to view: UIView, sender: Any? = nil) {
+    func toInt() -> Int {
         switch self {
         case .push:
-            animate(view, animations: {
+            return 0
+        case .shiftRight:
+            return 1
+        case .transform(_):
+            return 2
+        }
+    }
+    
+    /**
+     */
+    func applyHover(to view: UIView, duration: Double = 0.1, sender: Any? = nil) {
+        switch self {
+        case .transform(let animations):
+            animate(view, duration: duration, animations: animations)
+            break
+        case .push:
+            animate(view, duration: duration, animations: {
                 view.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
             })
             break
         case .shiftRight:
-            animate(view, animations: {
+            animate(view, duration: duration, animations: {
                 view.transform = CGAffineTransform(translationX: 10.0, y: 0)
             })
             break
@@ -35,10 +63,10 @@ public enum HoverStyle: Int {
     
     /**
      */
-    func applyUnhover(to view: UIView, sender: Any? = nil) {
+    func applyUnhover(to view: UIView, duration: Double = 0.1, sender: Any? = nil) {
         switch self {
         default:
-            animate(view, animations: {
+            animate(view, duration: duration, animations: {
                 view.transform = CGAffineTransform.identity
             })
             break
@@ -47,7 +75,7 @@ public enum HoverStyle: Int {
     
     /**
      */
-    private func animate(_ view: UIView, animations: @escaping (() -> Void), _ duration: Double = 0.1) {
+    private func animate(_ view: UIView, duration: Double = 0.1, animations: @escaping (() -> Void)) {
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: animations, completion: nil)
     }
 }
@@ -60,91 +88,91 @@ public extension UIView {
     
     /**
      */
-    func height() -> CGFloat {
+    public func height() -> CGFloat {
         return self.frame.height
     }
     
     /**
      */
-    func width() -> CGFloat {
+    public func width() -> CGFloat {
         return self.frame.width
     }
     
     /**
      */
-    func x() -> CGFloat {
+    public func x() -> CGFloat {
         return self.frame.minX
     }
     
     /**
      */
-    func y() -> CGFloat {
+    public func y() -> CGFloat {
         return self.frame.minY
     }
     
     /**
      */
-    func maxX() -> CGFloat {
+    public func maxX() -> CGFloat {
         return self.frame.maxX
     }
     
     /**
      */
-    func maxY() -> CGFloat {
+    public func maxY() -> CGFloat {
         return self.frame.maxY
     }
     
     /**
      */
-    func size() -> CGSize {
+    public func size() -> CGSize {
         return self.frame.size
     }
     
     /**
      */
-    func origin() -> CGPoint {
+    public func origin() -> CGPoint {
         return self.frame.origin
     }
     
     /**
      */
-    func setHeight(_ value: CGFloat) {
+    public func setHeight(_ value: CGFloat) {
         self.frame = CGRect(origin: self.origin(), size: CGSize(width: self.width(), height: value))
     }
 
     /**
      */
-    func setWidth(_ value: CGFloat) {
+    public func setWidth(_ value: CGFloat) {
         self.frame = CGRect(origin: self.origin(), size: CGSize(width: value, height: self.height()))
     }
 
     /**
      */
-    func setX(_ value: CGFloat) {
+    public func setX(_ value: CGFloat) {
         self.frame = CGRect(origin: CGPoint(x: value, y: self.y()), size: self.size())
     }
     
     /**
      */
-    func setY(_ value: CGFloat) {
+    public func setY(_ value: CGFloat) {
         self.frame = CGRect(origin: CGPoint(x: self.x(), y: value), size: self.size())
     }
     
     /**
      */
-    func applyRadius(_ radius: CGFloat) {
+    public func applyRadius(_ radius: CGFloat) {
         layer.cornerRadius = radius
     }
     
     /**
      */
-    func makeRound() {
+    public func makeRound() {
         layer.cornerRadius = self.width()/2
     }
     
     /**
      */
-    func applyShadow(_ color: UIColor, _ offset: CGSize = CGSize.zero, _ radius: CGFloat = 10.0, _ opacity: Float = 1.0) {
+    public func applyShadow(_ color: UIColor, _ offset: CGSize = CGSize.zero, _ radius: CGFloat = 10.0, _ opacity: Float = 1.0) {
         layer.shadowColor = color.cgColor
         layer.shadowOffset = offset
         layer.shadowRadius = radius
@@ -153,14 +181,14 @@ public extension UIView {
     
     /**
      */
-    func applyBorder(width: CGFloat, color: UIColor) {
+    public func applyBorder(width: CGFloat, color: UIColor) {
         layer.borderWidth = width
         layer.borderColor = color.cgColor
     }
     
     /**
      */
-    func hover(with touch: UITouch, style: HoverStyle = .push) {
+    public func hover(with touch: UITouch, style: HoverStyle = .push) {
         if self.point(inside: touch.location(in: self), with: nil) {
             style.applyHover(to: self)
         }
@@ -171,13 +199,13 @@ public extension UIView {
     
     /**
      */
-    func unhover(style: HoverStyle = .push) {
+    public func unhover(style: HoverStyle = .push) {
         style.applyUnhover(to: self)
     }
     
     /**
      */
-    func shake(duration: Double = 0.5, amplitude: CGFloat = 10.0, completion: ((Bool) -> Void)? = nil) {
+    public func shake(duration: Double = 0.5, amplitude: CGFloat = 10.0, completion: ((Bool) -> Void)? = nil) {
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModeLinear, animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.3, animations: {
                 self.transform = CGAffineTransform(translationX: amplitude, y: 0)
@@ -203,7 +231,7 @@ public extension UIView {
     
     /**
      */
-    func blink(duration: Double = 0.5, fromAlpha: CGFloat? = nil, toAlpha: CGFloat = 1.0, completion: ((Bool) -> Void)? = nil) {
+    public func blink(duration: Double = 0.5, fromAlpha: CGFloat? = nil, toAlpha: CGFloat = 1.0, completion: ((Bool) -> Void)? = nil) {
         var fa = fromAlpha
         if fa == nil {
             fa = self.alpha
@@ -219,7 +247,7 @@ public extension UIView {
     
     /**
      */
-    func blink(with color: UIColor, duration: Double = 0.5, completion: ((Bool) -> Void)? = nil) {
+    public func blink(with color: UIColor, duration: Double = 0.5, completion: ((Bool) -> Void)? = nil) {
         let initialColor = self.backgroundColor
         UIView.animate(withDuration: duration/2, delay: 0, options: .curveEaseOut, animations: {
             self.backgroundColor = color
@@ -232,23 +260,45 @@ public extension UIView {
     
     /**
      */
-    func fadeIn(duration: Double = 0.3, alpha: CGFloat = 1.0, completion: (() -> Void)? = nil) {
+    public func fadeIn(duration: Double = 0.3, alpha: CGFloat = 1.0, completion: (() -> Void)? = nil) {
         fade(with: duration, to: alpha, completion: completion)
     }
     
     /**
      */
-    func fadeOut(duration: Double = 0.3, alpha: CGFloat = 0.0, completion: (() -> Void)? = nil) {
+    public func fadeOut(duration: Double = 0.3, alpha: CGFloat = 0.0, completion: (() -> Void)? = nil) {
         fade(with: duration, to: alpha, completion: completion)
     }
     
     /**
      */
-    func fade(with duration: Double = 0.3, to alpha: CGFloat, completion: (() -> Void)? = nil) {
+    public func fade(with duration: Double = 0.3, to alpha: CGFloat, completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: duration, animations: {
             self.alpha = alpha
         }, completion: {_ in
             completion?()
         })
+    }
+    
+    /**
+     */
+    public func setHidden(_ hidden: Bool = true, animated: Bool = true, completion: (() -> Void)? = nil) {
+        if animated {
+            if hidden {
+                self.fadeOut() {
+                    self.isHidden = true
+                    completion?()
+                }
+            }
+            else {
+                self.isHidden = false
+                self.fadeIn(completion: completion)
+            }
+        }
+        else {
+            self.alpha = hidden ? 0 : 1
+            self.isHidden = hidden
+            completion?()
+        }
     }
 }

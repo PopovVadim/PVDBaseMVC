@@ -180,8 +180,13 @@ open class BaseViewController: UIViewController {
     
     /**
      */
-    open func push(vc: UIViewController, animated: Bool = true) {
-        self.vcForTransition.navigationController?.pushViewController(vc, animated: animated)
+    open func push(vc: UIViewController, forceSelf: Bool = false, animated: Bool = true) {
+        if forceSelf {
+            self.navigationController?.pushViewController(vc, animated: animated)
+        }
+        else {
+            self.vcForTransition.navigationController?.pushViewController(vc, animated: animated)
+        }
     }
     
     /**

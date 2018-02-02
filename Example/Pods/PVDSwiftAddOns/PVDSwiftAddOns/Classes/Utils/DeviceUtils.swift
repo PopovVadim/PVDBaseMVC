@@ -20,19 +20,21 @@ public class Device {
     
     ///
     open static var current: DeviceModel {
-        get {
-            let w = UIScreen.main.bounds.width
-            if w <= 320 {
-                return .iPhone5
-            }
-            else if w <= 375 {
-                return .iPhone6
-            }
-            else if w <= 414 {
-                return .iPhonePlus
-            }
+        let w = UIScreen.main.bounds.width
+        let h = UIScreen.main.bounds.height
+        if h <= 480 {
+            return .iPhone4
+        }
+        else if w <= 320 {
+            return .iPhone5
+        }
+        else if w <= 375 {
             return .iPhone6
         }
+        else if w <= 414 {
+            return .iPhonePlus
+        }
+        return .iPhone6
     }
 }
 
@@ -41,12 +43,14 @@ public class Device {
  *
  */
 public enum DeviceModel {
-    case iPhone5, iPhone6, iPhonePlus
+    case iPhone4, iPhone5, iPhone6, iPhonePlus
     
     /**
      */
     public func fontScale() -> CGFloat {
         switch self {
+        case .iPhone4:
+            return 0.7
         case .iPhone5:
             return 0.8
         default:

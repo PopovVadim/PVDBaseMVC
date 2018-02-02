@@ -1,6 +1,6 @@
 {
   "name": "PVDBaseMVC",
-  "version": "0.0.7",
+  "version": "0.1.7",
   "summary": "A set of base Models, ViewControllers, Views and other UI to use or inherit from",
   "description": "A set of base Models, ViewControllers, Views and other UI to use or inherit from. Uses imperative UI creation approach (no storyboards)",
   "homepage": "https://github.com/PopovVadim/PVDBaseMVC",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/PopovVadim/PVDBaseMVC.git",
-    "tag": "0.0.7"
+    "tag": "0.1.7"
   },
   "platforms": {
     "ios": "9.0"
@@ -21,13 +21,13 @@
   "source_files": "PVDBaseMVC/Classes/**/*",
   "dependencies": {
     "PVDSwiftAddOns": [
-      "~> 0.1.6"
+      "~> 0.1.7"
     ],
     "SnapKit": [
       "~> 4.0.0"
     ],
     "SDWebImage": [
-      "~> 4.0"
+      "~> 4.3"
     ]
   }
 }
