@@ -1,6 +1,6 @@
 PODS:
-  - PVDBaseMVC (0.1.7):
-    - PVDSwiftAddOns (~> 0.1.7)
+  - PVDBaseMVC (0.1.8):
+    - PVDSwiftAddOns (~> 0.1.8)
     - SDWebImage (~> 4.3)
     - SnapKit (~> 4.0.0)
   - PVDSwiftAddOns (0.1.8)
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PVDBaseMVC: 5a30e19523f3ee93aac831bf423753360be1527a
+  PVDBaseMVC: b50006eef9c159fd81c869b7369a85dcc0549d74
   PVDSwiftAddOns: ec1be060711475050f96a7a4fc8571f215b3e14c
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
