@@ -188,7 +188,7 @@ open class BaseCollectionTextCellView: BaseCollectionCellView {
             return
         }
         
-        self.backgroundColor = backgroundColor
+        self.backgroundColor = localModel.backgroundColor
         
         label = UILabel()
         label.apply(localModel.textDescriptor)
