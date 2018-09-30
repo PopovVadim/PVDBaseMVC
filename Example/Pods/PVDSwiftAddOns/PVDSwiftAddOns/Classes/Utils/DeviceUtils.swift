@@ -7,43 +7,45 @@
 
 import Foundation
 
-/**
- *
- *
- */
-public class Device {
+///
+open class Device {
     
     ///
-    static var id: String {
+    public static var id: String {
         return UIDevice.current.identifierForVendor!.uuidString
     }
     
-    ///
-    open static var current: DeviceModel {
-        let w = UIScreen.main.bounds.width
-        let h = UIScreen.main.bounds.height
-        if h <= 480 {
+    public static var current: DeviceModel {
+        return device(by: UIScreen.main.nativeBounds.height)
+    }
+    
+    public static var simulating: DeviceModel {
+        return device(by: UIScreen.main.bounds.height * UIScreen.main.scale)
+    }
+    
+    private static func device(by screenHeight: CGFloat) -> DeviceModel {
+        if screenHeight <= 960 {
             return .iPhone4
         }
-        else if w <= 320 {
+        else if screenHeight <= 1136 {
             return .iPhone5
         }
-        else if w <= 375 {
+        else if screenHeight <= 1334 {
             return .iPhone6
         }
-        else if w <= 414 {
+        else if screenHeight <= 1920 {
             return .iPhonePlus
+        }
+        else if screenHeight <= 2436 {
+            return .iPhoneX
         }
         return .iPhone6
     }
 }
 
-/**
- *
- *
- */
+///
 public enum DeviceModel {
-    case iPhone4, iPhone5, iPhone6, iPhonePlus
+    case iPhone4, iPhone5, iPhone6, iPhonePlus, iPhoneX
     
     /**
      */
@@ -58,3 +60,4 @@ public enum DeviceModel {
         }
     }
 }
+

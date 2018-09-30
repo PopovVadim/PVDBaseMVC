@@ -159,13 +159,13 @@ open class ImageCellModel: BaseCollectionCellModel {
     ///
     open var image: UIImage?
     open var imageURL: URL?
-    open var contentMode: UIViewContentMode = .scaleAspectFill
+    open var contentMode: UIView.ContentMode = .scaleAspectFill
     open var backgroundColor: UIColor?
     open var imageSize: CGSize?
     
     /**
      */
-    public init(url: URL? = nil, image: UIImage? = nil, imageSize: CGSize? = nil, contentMode: UIViewContentMode = .scaleAspectFill, backgroundColor: UIColor? = nil, size: CGSize) {
+    public init(url: URL? = nil, image: UIImage? = nil, imageSize: CGSize? = nil, contentMode: UIView.ContentMode = .scaleAspectFill, backgroundColor: UIColor? = nil, size: CGSize) {
         self.imageURL = url
         self.image = image
         self.contentMode = contentMode

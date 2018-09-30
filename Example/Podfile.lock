@@ -1,27 +1,33 @@
 PODS:
-  - PVDBaseMVC (0.1.8):
-    - PVDSwiftAddOns (~> 0.1.8)
+  - PVDBaseMVC (0.2.0):
+    - PVDSwiftAddOns (~> 0.2.1)
     - SDWebImage (~> 4.3)
     - SnapKit (~> 4.0.0)
-  - PVDSwiftAddOns (0.1.8)
-  - SDWebImage (4.3.0):
-    - SDWebImage/Core (= 4.3.0)
-  - SDWebImage/Core (4.3.0)
-  - SnapKit (4.0.0)
+  - PVDSwiftAddOns (0.2.1)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - SnapKit (4.0.1)
 
 DEPENDENCIES:
   - PVDBaseMVC (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PVDSwiftAddOns
+    - SDWebImage
+    - SnapKit
+
 EXTERNAL SOURCES:
   PVDBaseMVC:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  PVDBaseMVC: b50006eef9c159fd81c869b7369a85dcc0549d74
-  PVDSwiftAddOns: ec1be060711475050f96a7a4fc8571f215b3e14c
-  SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  PVDBaseMVC: 2c2bfa7d3e2035e4178779a3cd046660e5647c80
+  PVDSwiftAddOns: 14d93a7e22dbcb9d508ab9ec75b83ac7a304000a
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
 PODFILE CHECKSUM: 24db8f088b1054742dd4b3af719bcfb2f346fc09
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

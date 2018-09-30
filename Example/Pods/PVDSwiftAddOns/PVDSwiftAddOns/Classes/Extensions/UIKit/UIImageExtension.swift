@@ -33,8 +33,8 @@ public extension UIImage {
     
     /**
      */
-    func detectOrientation() -> UIImageOrientation{
-        var newOrientation = UIImageOrientation.up
+    func detectOrientation() -> UIImage.Orientation{
+        var newOrientation = UIImage.Orientation.up
         switch (self.imageOrientation)
         {
         case .up:

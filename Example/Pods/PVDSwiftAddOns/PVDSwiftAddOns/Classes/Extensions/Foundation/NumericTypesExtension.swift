@@ -18,7 +18,7 @@ public extension Int {
     func complementPrepending(to numberOfDigits: Int) -> String {
         
         var str = String(self)
-        if str.count <= numberOfDigits {
+        if str.count >= numberOfDigits {
             return str
         }
         while str.count < numberOfDigits {

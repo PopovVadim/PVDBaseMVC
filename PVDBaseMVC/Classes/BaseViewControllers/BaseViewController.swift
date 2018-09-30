@@ -78,7 +78,7 @@ open class BaseViewController: UIViewController {
     }
     
     ///
-    open var blurStyle: UIBlurEffectStyle {
+    open var blurStyle: UIBlurEffect.Style {
         get {
             return .extraLight
         }
@@ -152,7 +152,7 @@ open class BaseViewController: UIViewController {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         createViews()
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     /**
@@ -167,7 +167,7 @@ open class BaseViewController: UIViewController {
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         isDisplaying = false
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     /**
@@ -333,7 +333,7 @@ open class BaseViewController: UIViewController {
             self.applyBlur(animated: animated)
         }
         if self.activityIndicator == nil {
-            self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+            self.activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
             activityIndicator.hidesWhenStopped = true
             self.view.addSubview(activityIndicator)
         }
@@ -363,10 +363,10 @@ open class BaseViewController: UIViewController {
     /**
      */
     open func add(childVC viewController: UIViewController, to view: UIView) {
-        addChildViewController(viewController)
+        addChild(viewController)
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewController.view)
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
         
         viewController.view.snp.makeConstraints({ make in
             make.width.equalToSuperview()
@@ -378,8 +378,8 @@ open class BaseViewController: UIViewController {
     /**
      */
     open func remove(childVC viewController: UIViewController) {
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
 }

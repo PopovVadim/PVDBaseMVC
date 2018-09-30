@@ -188,19 +188,19 @@ public extension UIView {
     
     /**
      */
-    public func hover(with touch: UITouch, style: HoverStyle = .push) {
+    public func hover(with touch: UITouch, style: HoverStyle = .push, duration: Double = 0.3) {
         if self.point(inside: touch.location(in: self), with: nil) {
-            style.applyHover(to: self)
+            style.applyHover(to: self, duration: duration)
         }
         else {
-            unhover(style: style)
+            unhover(style: style, duration: duration)
         }
     }
     
     /**
      */
-    public func unhover(style: HoverStyle = .push) {
-        style.applyUnhover(to: self)
+    public func unhover(style: HoverStyle = .push, duration: Double = 0.3) {
+        style.applyUnhover(to: self, duration: duration)
     }
     
     /**

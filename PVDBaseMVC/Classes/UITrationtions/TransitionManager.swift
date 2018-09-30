@@ -90,7 +90,7 @@ open class CrossDissolveTransitionManager : TransitionManager {
         // get the duration of the animation
         let duration = self.transitionDuration(using: transitionContext)
         
-        let options = interactive ? UIViewAnimationOptions.curveLinear : UIViewAnimationOptions.curveEaseOut
+        let options = interactive ? UIView.AnimationOptions.curveLinear : UIView.AnimationOptions.curveEaseOut
         
         // perform the animation
         UIView.animate(withDuration: duration, delay: 0.0, options: options, animations: {
@@ -152,7 +152,7 @@ open class SideBySideTransitionManager : TransitionManager {
         // get the duration of the animation
         let duration = self.transitionDuration(using: transitionContext)
         
-        let options = interactive ? UIViewAnimationOptions.curveLinear : UIViewAnimationOptions.curveEaseOut
+        let options = interactive ? UIView.AnimationOptions.curveLinear : UIView.AnimationOptions.curveEaseOut
         
         // perform the animation
         UIView.animate(withDuration: duration, delay: 0.0, options: options, animations: {

@@ -362,20 +362,20 @@ open class BaseCellWithCollectionView: BaseCollectionCellView, CollectionViewOwn
             }
             if let headerModel = section.headerModel,
                 !registeredHeaderIdentifiers.contains(headerModel.identifier) {
-                collectionView.register(headerModel.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerModel.identifier)
+                collectionView.register(headerModel.viewClass, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerModel.identifier)
             }
             if let footerModel = section.footerModel,
                 !registeredFooterIdentifiers.contains(footerModel.identifier) {
-                collectionView.register(footerModel.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: footerModel.identifier)
+                collectionView.register(footerModel.viewClass, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerModel.identifier)
             }
         }
         
         let baseReusableModel = BaseCollectionReusableModel(size: CGSize(width: self.collectionView.width(), height: 0))
         if !registeredHeaderIdentifiers.contains(baseReusableModel.identifier) {
-            collectionView.register(baseReusableModel.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: baseReusableModel.identifier)
+            collectionView.register(baseReusableModel.viewClass, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: baseReusableModel.identifier)
         }
         if !registeredFooterIdentifiers.contains(baseReusableModel.identifier) {
-            collectionView.register(baseReusableModel.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: baseReusableModel.identifier)
+            collectionView.register(baseReusableModel.viewClass, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: baseReusableModel.identifier)
         }
     }
     
@@ -432,13 +432,13 @@ extension BaseCellWithCollectionView {
         }
         
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             let headerModel = sectionModels[indexPath.section].headerModel ?? BaseCollectionReusableModel(size: CGSize(width: 0, height: 0))
             reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerModel.identifier, for: indexPath) as! BaseCollectionReusableView
             reusableView.model = headerModel
             break
             
-        case UICollectionElementKindSectionFooter:
+        case UICollectionView.elementKindSectionFooter:
             let footerModel = sectionModels[indexPath.section].footerModel ?? BaseCollectionReusableModel(size: CGSize(width: 0, height: 0))
             reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerModel.identifier, for: indexPath) as! BaseCollectionReusableView
             reusableView.model = footerModel
